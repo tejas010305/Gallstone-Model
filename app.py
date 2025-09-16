@@ -3,107 +3,112 @@ import pickle
 import pandas as pd
 import numpy as np
 
-# Apply custom CSS for a beautiful dark theme
 st.markdown("""
 <style>
-    /* Overall Page Styling with a new dark blue palette */
+    /* Overall Page Styling - light, clean medical theme */
     body {
-        background-color: #0A192F;
-        color: #E6F1FF;
-        font-family: 'Inter', sans-serif;
+        background-color: #F7FBFF;
+        color: #1A2B48;
+        font-family: 'Helvetica Neue', sans-serif;
     }
 
-    /* Sidebar and Main Content */
+    /* Main content spacing */
     .main .block-container {
         padding-top: 3rem;
         padding-bottom: 3rem;
     }
 
-    /* Header and Titles */
+    /* Header & Titles */
     h1 {
-        color: #64FFDA; /* A vibrant accent color */
+        color: #0077B6;
         font-weight: 700;
         text-align: center;
-        border-bottom: 2px solid #64FFDA;
+        border-bottom: 2px solid #90E0EF;
         padding-bottom: 10px;
     }
 
-    h2 {
-        color: #CCD6F6;
+    h2, h3 {
+        color: #023E8A;
         font-weight: 600;
     }
 
     /* Input Fields */
     .stTextInput > div > div > input,
     .stNumberInput > div > div > input {
-        background-color: #1A283C;
-        color: #E6F1FF;
-        border: 1px solid #303C52;
+        background-color: #FFFFFF;
+        color: #1A2B48;
+        border: 1px solid #CED4DA;
         border-radius: 8px;
-        padding: 12px 18px;
-        transition: border 0.3s;
+        padding: 10px 14px;
+        transition: all 0.3s ease;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
     .stTextInput > div > div > input:focus,
     .stNumberInput > div > div > input:focus {
-        border-color: #64FFDA;
+        border-color: #0077B6;
+        box-shadow: 0 0 6px rgba(0,119,182,0.3);
     }
 
     /* Selectbox */
     .stSelectbox > div > div > div {
-        background-color: #1A283C;
-        color: #E6F1FF;
-        border: 1px solid #303C52;
+        background-color: #FFFFFF;
+        color: #1A2B48;
+        border: 1px solid #CED4DA;
         border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
 
     /* Buttons */
     .stButton > button {
-        background-color: #64FFDA;
-        color: #0A192F;
+        background-color: #0077B6;
+        color: #FFFFFF;
         font-weight: bold;
         border-radius: 8px;
         padding: 12px 25px;
         border: none;
-        transition: background-color 0.3s;
+        transition: background-color 0.3s, transform 0.1s;
     }
     .stButton > button:hover {
-        background-color: #4ECDC4;
+        background-color: #0096C7;
+        transform: translateY(-2px);
     }
 
-    /* Info Box for Prediction Result */
+    /* Info Box (Prediction Result) */
     div[data-baseweb="alert"] {
-        background-color: #1A283C !important;
-        color: #E6F1FF !important;
-        border-left: 5px solid #64FFDA !important;
+        background-color: #E9F7FF !important;
+        color: #023E8A !important;
+        border-left: 5px solid #0077B6 !important;
         border-radius: 8px !important;
         margin-top: 20px;
     }
 
     /* Markdown Separator */
     hr {
-        border-top: 2px solid #303C52;
+        border-top: 2px solid #DEE2E6;
     }
 
-    /* General Text and Disclaimer */
+    /* General Text */
     .stMarkdown p {
-        color: #A8B2D1;
+        color: #495057;
+        line-height: 1.6;
     }
 
-    /* Sidebar Styling for the Nav Bar */
+    /* Sidebar Styling */
     .css-1d391kg {
-        background-color: #0A192F;
-        border-right: 1px solid #303C52;
+        background-color: #F0F8FF;
+        border-right: 1px solid #DEE2E6;
     }
     .css-1d391kg .stRadio > label {
-        color: #A8B2D1;
-        font-size: 1.1rem;
+        color: #495057;
+        font-size: 1.05rem;
         font-weight: 500;
     }
     .css-1d391kg .stRadio > label:hover {
-        color: #64FFDA;
+        color: #0077B6;
     }
 </style>
 """, unsafe_allow_html=True)
+
 
 # Load the model
 @st.cache_resource
