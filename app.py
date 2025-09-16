@@ -3,6 +3,13 @@ import pickle
 import pandas as pd
 import numpy as np
 
+# --- Page Config (important for theme fix) ---
+st.set_page_config(
+    page_title="Gallstone Prediction App",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
 # --- Sidebar Navigation ---
 st.sidebar.title("Navigation")
 page = st.sidebar.radio("Go to", ["Prediction", "About", "Team"])
