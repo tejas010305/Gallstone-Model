@@ -12,12 +12,42 @@ body {
     color: #1A2B48;
     font-family: 'Helvetica Neue', sans-serif;
 }
+.main .block-container {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
 h1 {
     color: #0077B6;
     font-weight: 700;
     text-align: center;
     border-bottom: 2px solid #90E0EF;
     padding-bottom: 10px;
+}
+h2, h3 {
+    color: #023E8A;
+    font-weight: 600;
+}
+.stTextInput > div > div > input,
+.stNumberInput > div > div > input {
+    background-color: #FFFFFF;
+    color: #1A2B48;
+    border: 1px solid #CED4DA;
+    border-radius: 8px;
+    padding: 10px 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.stTextInput > div > div > input:focus,
+.stNumberInput > div > div > input:focus {
+    border-color: #0077B6;
+    box-shadow: 0 0 6px rgba(0,119,182,0.3);
+}
+.stSelectbox > div > div > div {
+    background-color: #FFFFFF;
+    color: #1A2B48;
+    border: 1px solid #CED4DA;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 .stButton > button {
     background-color: #0077B6;
@@ -26,9 +56,36 @@ h1 {
     border-radius: 8px;
     padding: 12px 25px;
     border: none;
+    transition: background-color 0.3s;
 }
 .stButton > button:hover {
     background-color: #0096C7;
+}
+div[data-baseweb="alert"] {
+    background-color: #E9F7FF !important;
+    color: #023E8A !important;
+    border-left: 5px solid #0077B6 !important;
+    border-radius: 8px !important;
+    margin-top: 20px;
+}
+hr {
+    border-top: 2px solid #DEE2E6;
+}
+.stMarkdown p {
+    color: #495057;
+    line-height: 1.6;
+}
+.css-1d391kg {
+    background-color: #F0F8FF;
+    border-right: 1px solid #DEE2E6;
+}
+.css-1d391kg .stRadio > label {
+    color: #495057;
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+.css-1d391kg .stRadio > label:hover {
+    color: #0077B6;
 }
 </style>
 """
@@ -41,12 +98,43 @@ body {
     color: #2B2D42;
     font-family: 'Poppins', sans-serif;
 }
+.main .block-container {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
 h1 {
     background: linear-gradient(90deg, #FF6B6B, #6C63FF);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 800;
     text-align: center;
+    padding-bottom: 12px;
+}
+h2, h3 {
+    color: #6C63FF;
+    font-weight: 600;
+}
+.stTextInput > div > div > input,
+.stNumberInput > div > div > input {
+    background-color: #FFFFFF;
+    color: #2B2D42;
+    border: 2px solid #E0E0E0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.stTextInput > div > div > input:focus,
+.stNumberInput > div > div > input:focus {
+    border-color: #6C63FF;
+    box-shadow: 0 0 8px rgba(108,99,255,0.4);
+}
+.stSelectbox > div > div > div {
+    background-color: #FFFFFF;
+    color: #2B2D42;
+    border: 2px solid #E0E0E0;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 .stButton > button {
     background: linear-gradient(90deg, #6C63FF, #48C6EF);
@@ -55,9 +143,39 @@ h1 {
     border-radius: 25px;
     padding: 12px 28px;
     border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(108,99,255,0.3);
 }
 .stButton > button:hover {
     transform: scale(1.05);
+    box-shadow: 0 6px 14px rgba(108,99,255,0.4);
+}
+div[data-baseweb="alert"] {
+    background: #FFF0F6 !important;
+    color: #6C63FF !important;
+    border-left: 5px solid #FF6B6B !important;
+    border-radius: 12px !important;
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+hr {
+    border-top: 2px dashed #D3CCE3;
+}
+.stMarkdown p {
+    color: #4A4E69;
+    line-height: 1.6;
+}
+.css-1d391kg {
+    background: linear-gradient(180deg, #F9F9FF, #FDEBEB);
+    border-right: 1px solid #E0E0E0;
+}
+.css-1d391kg .stRadio > label {
+    color: #2B2D42;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.css-1d391kg .stRadio > label:hover {
+    color: #FF6B6B;
 }
 </style>
 """
