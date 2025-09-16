@@ -3,61 +3,79 @@ import pickle
 import pandas as pd
 import numpy as np
 
-# --- Page Config (important for theme fix) ---
-st.set_page_config(
-    page_title="Gallstone Prediction App",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+# --- Theme CSS ---
+professional_css = """
+<style>
+/* PROFESSIONAL MEDICAL THEME */
+body {
+    background-color: #F7FBFF;
+    color: #1A2B48;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+h1 {
+    color: #0077B6;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: 2px solid #90E0EF;
+    padding-bottom: 10px;
+}
+.stButton > button {
+    background-color: #0077B6;
+    color: #FFFFFF;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 12px 25px;
+    border: none;
+}
+.stButton > button:hover {
+    background-color: #0096C7;
+}
+</style>
+"""
 
-# --- Sidebar Navigation ---
+playful_css = """
+<style>
+/* PLAYFUL MODERN THEME */
+body {
+    background: linear-gradient(135deg, #FDEBEB, #E3FDFD);
+    color: #2B2D42;
+    font-family: 'Poppins', sans-serif;
+}
+h1 {
+    background: linear-gradient(90deg, #FF6B6B, #6C63FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    text-align: center;
+}
+.stButton > button {
+    background: linear-gradient(90deg, #6C63FF, #48C6EF);
+    color: #FFFFFF;
+    font-weight: bold;
+    border-radius: 25px;
+    padding: 12px 28px;
+    border: none;
+}
+.stButton > button:hover {
+    transform: scale(1.05);
+}
+</style>
+"""
+
+# --- Sidebar ---
 st.sidebar.title("Navigation")
 page = st.sidebar.radio("Go to", ["Prediction", "About", "Team"])
 st.sidebar.markdown("---")
 
 # --- Sidebar Theme Switcher ---
 st.sidebar.title("Theme Settings")
-theme_type = st.sidebar.radio("Select Theme", ["Professional", "Playful"], index=0)  # Default Professional
-theme_mode = st.sidebar.radio("Mode", ["Light", "Dark"], index=0)  # Default Light
-
-# --- Theme CSS ---
-professional_light = """<style>
-body { background-color: #F7FBFF; color: #1A2B48; font-family: 'Helvetica Neue', sans-serif; }
-h1 { color: #0077B6; border-bottom: 2px solid #90E0EF; text-align: center; padding-bottom: 10px; }
-.stButton > button { background-color: #0077B6; color: #fff; border-radius: 8px; }
-.stButton > button:hover { background-color: #0096C7; }
-</style>"""
-
-professional_dark = """<style>
-body { background-color: #0A192F; color: #E6F1FF; font-family: 'Helvetica Neue', sans-serif; }
-h1 { color: #64FFDA; border-bottom: 2px solid #64FFDA; text-align: center; padding-bottom: 10px; }
-.stButton > button { background-color: #64FFDA; color: #0A192F; border-radius: 8px; font-weight: bold; }
-.stButton > button:hover { background-color: #4ECDC4; }
-</style>"""
-
-playful_light = """<style>
-body { background: linear-gradient(135deg,#FDEBEB,#E3FDFD); color: #2B2D42; font-family: 'Poppins',sans-serif; }
-h1 { background: linear-gradient(90deg,#FF6B6B,#6C63FF); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-align:center; }
-.stButton > button { background: linear-gradient(90deg,#6C63FF,#48C6EF); color:#fff; border-radius:25px; }
-.stButton > button:hover { transform:scale(1.05); }
-</style>"""
-
-playful_dark = """<style>
-body { background: linear-gradient(135deg,#2B2D42,#1A1A2E); color: #EDF2F4; font-family: 'Poppins',sans-serif; }
-h1 { background: linear-gradient(90deg,#FF6B6B,#FFD166); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-align:center; }
-.stButton > button { background: linear-gradient(90deg,#FF6B6B,#FFD166); color:#fff; border-radius:25px; }
-.stButton > button:hover { transform:scale(1.05); box-shadow:0 0 10px rgba(255,255,255,0.3); }
-</style>"""
+theme_choice = st.sidebar.radio("Select Theme", ["Professional", "Playful"])
 
 # --- Apply selected theme ---
-if theme_type == "Professional" and theme_mode == "Light":
-    st.markdown(professional_light, unsafe_allow_html=True)
-elif theme_type == "Professional" and theme_mode == "Dark":
-    st.markdown(professional_dark, unsafe_allow_html=True)
-elif theme_type == "Playful" and theme_mode == "Light":
-    st.markdown(playful_light, unsafe_allow_html=True)
+if theme_choice == "Professional":
+    st.markdown(professional_css, unsafe_allow_html=True)
 else:
-    st.markdown(playful_dark, unsafe_allow_html=True)
+    st.markdown(playful_css, unsafe_allow_html=True)
 
 # --- Load the model ---
 @st.cache_resource
@@ -128,6 +146,7 @@ if page == "Prediction":
             prediction_proba = model.predict_proba(input_df)
             predicted_class_index = np.argmax(prediction_proba, axis=1)[0]
             predicted_class = model.classes_[predicted_class_index]
+
         except Exception as e:
             st.error(f"An error occurred during prediction: {e}")
             st.stop()
